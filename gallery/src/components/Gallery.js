@@ -1,20 +1,20 @@
 import React, { useState } from 'react';
-import './style.css'; // Import your CSS file for styling
+import './style.css'; 
 
 const Gallery = () => {
   const [image, setImage] = useState(null);
-  const [imageFile, setImageFile] = useState(null); // New state for image file input
+  const [imageFile, setImageFile] = useState(null);
   const [description, setDescription] = useState('');
   const [gallery, setGallery] = useState([]);
   const [isEditing, setIsEditing] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(null);
-  const [modalImage, setModalImage] = useState(null); // State for modal image
+  const [modalImage, setModalImage] = useState(null);
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
       setImage(URL.createObjectURL(file));
-      setImageFile(file); // Store the file for later use
+      setImageFile(file);
     }
   };
 
@@ -25,20 +25,20 @@ const Gallery = () => {
   const handleAddImage = () => {
     if (image && description) {
       if (isEditing && currentIndex !== null) {
-        // Editing existing image
+        
         const updatedGallery = [...gallery];
         updatedGallery[currentIndex] = { image, description };
         setGallery(updatedGallery);
         setIsEditing(false);
         setCurrentIndex(null);
         setImage(null);
-        setImageFile(null); // Clear the file input state
+        setImageFile(null); 
         setDescription('');
       } else {
         // Adding new image
         setGallery([...gallery, { image, description }]);
         setImage(null);
-        setImageFile(null); // Clear the file input state
+        setImageFile(null);
         setDescription('');
       }
     }
@@ -53,15 +53,15 @@ const Gallery = () => {
   const editImage = (item, index) => {
     setIsEditing(true);
     setCurrentIndex(index);
-    setImage(item.image); // Pre-fill image URL for editing
-    setDescription(item.description); // Pre-fill description for editing
+    setImage(item.image);
+    setDescription(item.description);
   };
 
   const cancelEdit = () => {
     setIsEditing(false);
     setCurrentIndex(null);
     setImage(null);
-    setImageFile(null); // Clear the file input state
+    setImageFile(null);
     setDescription('');
   };
 
